@@ -2250,51 +2250,7 @@
       </div>
     </main>
 
-      <!-- USER FEEDBACK SECTION (SENDS DIRECTLY TO VEDASH'S EMAIL) -->
-<section class="container" style="margin: 2rem auto 1.5rem;">
-  <div style="background-color: var(--card-surface); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm); transition: all var(--transition-speed) ease;">
-    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.4rem;">
-      <span style="font-size: 1.15rem;">💬</span>
-      <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin: 0;">Send Feedback to the Developer</h3>
-    </div>
-    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
-      Spotted a bug or have a feature idea for JEE/NEET aspirants? Message <strong>Vedash Badiganti</strong> directly.
-    </p>
-
-    <form action="https://web3forms.com" method="POST">
-      <input type="hidden" name="access_key" value="6c9c735b-40b8-4f86-98b1-9263c86fd050" />
-      <input type="hidden" name="subject" value="New Backlog Killer User Feedback!" />
-      <input type="checkbox" name="botcheck" style="display: none;" />
-
-      <div style="margin-bottom: 0.85rem;">
-        <input 
-          type="text" 
-          name="name" 
-          required
-          placeholder="Your Name & Class (e.g., Aarav - Class 11 JEE)" 
-          style="width: 100%; padding: 0.75rem 1rem; background-color: var(--bg-base); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: var(--radius-md); font-family: var(--font-main); font-size: 0.95rem; outline: none;"
-        />
-      </div>
-
-      <div style="margin-bottom: 1rem;">
-        <textarea 
-          name="message" 
-          rows="3" 
-          required 
-          placeholder="Write your feedback, confusion, or feature suggestion here..."
-          style="width: 100%; padding: 0.75rem 1rem; background-color: var(--bg-base); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: var(--radius-md); font-family: var(--font-main); font-size: 0.95rem; resize: vertical; outline: none;"
-        ></textarea>
-      </div>
-
-      <button 
-        type="submit" 
-        style="background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); color: #FFFFFF; border: none; padding: 0.75rem 1.4rem; border-radius: var(--radius-md); font-family: var(--font-main); font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 0 16px var(--primary-accent-glow);"
-      >
-        Send Feedback →
-      </button>
-    </form>
-  </div>
-</section>
+      
 
 
 
@@ -3736,5 +3692,96 @@
       }, 3000);
     }
   </script>
+<!-- USER FEEDBACK SECTION + DEVELOPER FOOTER (FIXED AJAX SUBMIT & PADDING) -->
+<section class="container" style="margin: 2.5rem auto 1.5rem; position: relative; z-index: 2;">
+  <div style="background-color: var(--card-surface); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.4rem;">
+      <span style="font-size: 1.15rem;">💬</span>
+      <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin: 0;">Send Feedback to the Developer</h3>
+    </div>
+    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
+      Spotted a bug or have a feature idea for JEE/NEET aspirants? Message <strong>Vedash Badiganti</strong> directly.
+    </p>
+
+    <form id="vedashFeedbackForm">
+      <input type="hidden" name="access_key" value="6c9c735b-40b8-4f86-98b1-9263c86fd050" />
+      <input type="hidden" name="subject" value="New Backlog Killer User Feedback!" />
+      <input type="checkbox" name="botcheck" style="display: none;" />
+
+      <div style="margin-bottom: 0.85rem;">
+        <input 
+          type="text" 
+          name="name" 
+          required
+          placeholder="Your Name & Class (e.g., Aarav - Class 11 JEE)" 
+          style="width: 100%; padding: 0.75rem 1rem; background-color: var(--bg-base); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: var(--radius-md); font-family: var(--font-main); font-size: 0.95rem; outline: none;"
+        />
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <textarea 
+          name="message" 
+          rows="3" 
+          required 
+          placeholder="Write your feedback, confusion, or feature suggestion here..."
+          style="width: 100%; padding: 0.75rem 1rem; background-color: var(--bg-base); color: var(--text-primary); border: 1px solid var(--card-border); border-radius: var(--radius-md); font-family: var(--font-main); font-size: 0.95rem; resize: vertical; outline: none;"
+        ></textarea>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <button 
+          type="submit" 
+          id="fbSubmitBtn"
+          style="background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); color: #FFFFFF; border: none; padding: 0.75rem 1.4rem; border-radius: var(--radius-md); font-family: var(--font-main); font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 0 16px var(--primary-accent-glow);"
+        >
+          Send Feedback →
+        </button>
+        <span id="fbStatus" style="font-size: 0.9rem; font-weight: 600;"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer style="text-align: center; padding: 1.5rem 1rem 6.5rem; border-top: 1px solid var(--card-border); color: var(--text-secondary); font-size: 0.92rem; position: relative; z-index: 2;">
+  Built for Class 11 & 12 JEE/NEET Aspirants • Honoring Developer: <strong style="color: var(--primary-accent);">Vedash Badiganti</strong>
+</footer>
+
+<script>
+  document.getElementById("vedashFeedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById("fbSubmitBtn");
+    const status = document.getElementById("fbStatus");
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+    status.innerText = "";
+
+    const formData = new FormData(this);
+    const json = JSON.stringify(Object.fromEntries(formData));
+
+    try {
+      const res = await fetch("https://web3forms.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: json
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.style.color = "var(--success-accent, #10B981)";
+        status.innerText = "✓ Feedback sent to Vedash! Thank you.";
+        this.reset();
+      } else {
+        status.style.color = "var(--danger-accent, #EF4444)";
+        status.innerText = "Error sending feedback. Please try again.";
+      }
+    } catch (err) {
+      status.style.color = "var(--danger-accent, #EF4444)";
+      status.innerText = "Network error. Please check your connection.";
+    } finally {
+      btn.disabled = false;
+      btn.innerText = "Send Feedback →";
+    }
+  });
+</script>
+
 </body>
 </html>
