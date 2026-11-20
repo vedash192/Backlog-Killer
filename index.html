@@ -3782,6 +3782,26 @@
     }
   });
 </script>
+  <script>
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+
+    // Detect when a user clicks any "Sprint" button on the Dashboard
+    if (btn.textContent.trim().endsWith('Sprint') && !btn.textContent.includes('Study Sprint')) {
+      setTimeout(() => {
+        // Find the "Start Focus" button on the Focus & Timer screen and auto-click it
+        const focusBtn = Array.from(document.querySelectorAll('button')).find(
+          b => b.textContent.includes('Start Focus')
+        );
+        if (focusBtn) {
+          focusBtn.click();
+        }
+      }, 150);
+    }
+  });
+</script>
+
 
 </body>
 </html>
